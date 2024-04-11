@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="@dimen/_4dp"
+        app:cardCornerRadius="@dimen/_4dp">
+
+        <TextView
+            android:id="@+id/textViewProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/_8dp"
+            android:textSize="@dimen/_36sp"
+            tools:text="Product 1" />
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -60,20 +60,18 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-service:$lifecycle_version")
 
-    // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
     implementation("androidx.lifecycle:lifecycle-process:$lifecycle_version")
 
-    // optional - ReactiveStreams support for LiveData
     implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version")
 
-    // optional - Test helpers for LiveData
     testImplementation("androidx.arch.core:core-testing:$arch_version")
 
-    // optional - Test helpers for Lifecycle runtime
     testImplementation ("androidx.lifecycle:lifecycle-runtime-testing:$lifecycle_version")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+
+
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

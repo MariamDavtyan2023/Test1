@@ -1,24 +1,23 @@
 package com.example.test1.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test1.databinding.FragmentTestBinding
-import kotlinx.coroutines.flow.collect
+import com.example.test1.ui.base.BaseTestFragment
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TestFragment : Fragment() {
+class TestFragment : BaseTestFragment() {
 
     private lateinit var binding: FragmentTestBinding
     private val adapter = TestAdapter()
-    private val viewModel by lazy {
-        ViewModelProvider(requireActivity())[TestViewModel::class.java]
-    }
+    private val viewModel: TestViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,19 +29,26 @@ class TestFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.getProducts()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupAdapter()
-
+        setupViews()
+        setupObserves()
     }
 
-    private fun setupAdapter() {
-        binding.recyclerViewProducts.adapter = adapter
-        binding.recyclerViewProducts.layoutManager = LinearLayoutManager(requireContext())
+    private fun setupViews() {
+        binding.recyclerViewProducts.apply {
+            adapter = this@TestFragment.adapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+    }
+
+    private fun setupObserves() {
         lifecycleScope.launch {
-            viewModel.products.collect {
+            viewModel.productStateFlow.collectLatest {
+                Log.d("TestFragment", it.size.toString())
                 adapter.updateData(it)
             }
         }

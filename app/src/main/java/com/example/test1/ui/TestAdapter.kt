@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test1.databinding.ProductItemBinding
 
-class TestAdapter : RecyclerView.Adapter<TestAdapter.ProductsModelViewHolder>() {
+class TestAdapter : RecyclerView.Adapter<TestAdapter.BaseViewHolder>() {
 
-    private val items = mutableListOf<ProductModel>()
+    private val items = mutableListOf<String>()
     private lateinit var context: Context
     private lateinit var inflater: LayoutInflater
 
@@ -21,18 +21,18 @@ class TestAdapter : RecyclerView.Adapter<TestAdapter.ProductsModelViewHolder>() 
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsModelViewHolder {
-        return ProductsViewHolder(ProductItemBinding.inflate(inflater, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+        return TestViewHolder(ProductItemBinding.inflate(inflater, parent, false))
     }
 
-    override fun onBindViewHolder(holder: ProductsModelViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         holder.bind(items[position])
     }
 
     override fun getItemCount() = items.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateData(list: List<ProductModel>?){
+    fun updateData(list: List<String>?){
         items.clear()
         list?.let {
             items.addAll(it)
@@ -40,13 +40,13 @@ class TestAdapter : RecyclerView.Adapter<TestAdapter.ProductsModelViewHolder>() 
         notifyDataSetChanged()
     }
 
-    abstract class ProductsModelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        abstract fun bind(item: ProductModel)
+    abstract class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        abstract fun bind(item: String)
     }
 
-    inner class ProductsViewHolder(private val binding: ProductItemBinding) : ProductsModelViewHolder(binding.root){
-        override fun bind(item: ProductModel) {
-            binding.textViewProduct.text = item.name
+    inner class TestViewHolder(private val binding: ProductItemBinding) : BaseViewHolder(binding.root){
+        override fun bind(item: String) {
+            binding.textViewProduct.text = item
         }
     }
 

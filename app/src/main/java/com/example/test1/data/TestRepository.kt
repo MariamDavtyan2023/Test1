@@ -4,11 +4,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 
-interface Repository {
+interface TestRepository {
     fun getProducts() : Flow<List<String>>
 }
 
-class TestRepository : Repository {
+class TestRepositoryImpl : TestRepository {
 
     override
     fun getProducts(): Flow<List<String>> = flow {

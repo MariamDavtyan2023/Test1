@@ -66,10 +66,15 @@ dependencies {
 
     testImplementation("androidx.arch.core:core-testing:$arch_version")
 
-    testImplementation ("androidx.lifecycle:lifecycle-runtime-testing:$lifecycle_version")
+    testImplementation("androidx.lifecycle:lifecycle-runtime-testing:$lifecycle_version")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+
+    implementation("io.insert-koin:koin-android:3.3.0")
+    implementation("io.insert-koin:koin-android-compat:3.3.0")
+    implementation("io.insert-koin:koin-androidx-workmanager:3.3.0")
+    implementation("io.insert-koin:koin-androidx-navigation:3.3.0")
 
 
 
